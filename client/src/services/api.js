@@ -1,3 +1,5 @@
+import SignUp from "../pages/SignUp";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getItems() {
@@ -11,8 +13,9 @@ export async function login(email, password) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
   });
+
   
-  const data = response.json();
+  const data = await response.json();
 
   if(!response.ok) {
     throw new Error(data.message || "Erro no login");
@@ -21,3 +24,15 @@ export async function login(email, password) {
   return data;
 } 
 
+
+export async function signUp(name, email, password) {
+    const response = await fetch(`${API_URL}/api/SignUp`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password })
+  });
+
+  const data = await response.json();
+
+  return data;
+}

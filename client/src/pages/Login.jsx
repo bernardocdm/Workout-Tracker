@@ -33,7 +33,7 @@ function Login() {
           <form className="flex flex-col items-center space-y-4" onSubmit={handleSubmit}>
             <h1 className="flex items-center justify-center font-sans font-semibold text-2xl text-black">Welcome Back!</h1>
             <p className="flex items-center justify-center font-sans font-extralight text-xl text-black p-4">To stay connected with us please login in your account</p>
-            
+  
             <input 
               value={email} 
               placeholder="E-mail" 

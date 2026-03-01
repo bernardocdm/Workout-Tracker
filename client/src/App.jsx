@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Items from "./pages/Items";
-import Home from "./pages/home";
-import SignUp from "./pages/signUp";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
 
 //create func with uppercase, create a route here and import too
 

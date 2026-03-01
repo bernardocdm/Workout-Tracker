@@ -1,4 +1,4 @@
-require("dotenv").config({ path:"./src/.env"});
+require("dotenv").config({ path:".env"});
 
 const app = require("./app");
 const pool = require("./src/database");
