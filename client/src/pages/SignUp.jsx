@@ -13,6 +13,7 @@ function SignUp() {
     e.preventDefault();
     const result = await signUp(name, email, password);
     console.log(result);
+    navigate("/home")
   }
 
   return (
@@ -23,7 +24,7 @@ function SignUp() {
 
         <div className="w-1/2 bg-white flex items-center justify-center">
           <div className="w-96 p-6">
-            <form className="flex flex-col items-center space-y-4" >
+            <form className="flex flex-col items-center space-y-4" onSubmit={handleSubmit}>
               <h1 className="flex items-center justify-center font-sans font-semibold text-2xl text-black">Welcome!</h1>
               <p className="flex items-center justify-center font-sans font-extralight text-xl text-black p-4">Create your account by putting your information below</p>
 
@@ -39,8 +40,8 @@ function SignUp() {
                 <input type="email"
                   placeholder="Email" 
                   required 
-                // value={email} 
-                // onChange={e => setEmail(e.target.value)} 
+                  value={email} 
+                  onChange={e => setEmail(e.target.value)} 
                 />
               </label>
               <div className="validator-hint hidden">Enter valid email address</div>
@@ -49,8 +50,8 @@ function SignUp() {
                 type="password" 
                 placeholder="Password" 
                 className="input" 
-                // value={password}
-                // onChange={e => setPassword(e.target.value)} 
+                value={password}
+                onChange={e => setPassword(e.target.value)} 
               />
 
 

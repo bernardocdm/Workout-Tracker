@@ -5,23 +5,19 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const result = await login(email, password);
-    console.log(result);
+    const { accessToken } = await login(email, password);
+    console.log(accessToken);
 
-    if(result.success) {
-      localStorage.setItem("token", result.token);
+    if(accessToken) {
+      localStorage.setItem("token", accessToken);
       console.log("Logado com sucesso")
+      navigate("/home");
     } else {
       console.log("Não foi possível logar no momento")
-    }
-
-    if (result.success) {
-      localStorage.setItem("token", result.token);
-      navigate("/home");
     }
   }
 

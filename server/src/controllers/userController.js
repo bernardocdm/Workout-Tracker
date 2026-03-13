@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt"); 
 const userModel = require("../Models/userModel");
 
 async function createUser(req, res) {
@@ -5,10 +7,16 @@ async function createUser(req, res) {
 
     try {
         const user = await userModel.createUser(name, email, password);
+
         res.status(201).json(user);
-        } catch (error){
+
+        } catch (error){    
+            if(error.code == '23505') {
+            res.status(409).json({ error: "Email já existente" });
+        } else{
             res.status(500).json({error: "Erro na criação de user"});
         }
+    }
 }
 
 async function getUsers(req, res) {

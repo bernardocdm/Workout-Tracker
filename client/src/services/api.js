@@ -1,5 +1,3 @@
-import SignUp from "../pages/SignUp";
-
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getItems() {
@@ -8,7 +6,7 @@ export async function getItems() {
 }
 
 export async function login(email, password) {
-  const response = await fetch(`${API_URL}/api/login`, {
+  const response = await fetch(`${API_URL}/users/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -26,13 +24,17 @@ export async function login(email, password) {
 
 
 export async function signUp(name, email, password) {
-    const response = await fetch(`${API_URL}/api/SignUp`, {
+    const response = await fetch(`${API_URL}/users`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password })
-  });
+    });
 
   const data = await response.json();
+
+  if(!response.ok) {
+    throw new Error(data.message || "Erro no cadastro");
+  }
 
   return data;
 }
