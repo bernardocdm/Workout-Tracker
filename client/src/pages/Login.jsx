@@ -10,7 +10,6 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     const { accessToken } = await login(email, password);
-    console.log(accessToken);
 
     if(accessToken) {
       localStorage.setItem("token", accessToken);

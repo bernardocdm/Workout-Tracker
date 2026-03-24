@@ -1,15 +1,16 @@
-    const express = require("express");
-    const router = express.Router();
-    const userController = require("../controllers/userController");
+const express = require("express");
+const router = express.Router();
+const userController = require("../controllers/userController");
+const userMiddleware = require("../middlewares/auth");
 
-    router.post("/", (req , res, next) => {
-        next();
-    }, userController.createUser);
+router.post("/", (req , res, next) => {
+    next();
+}, userController.createUser);
 
-    router.get("/", userController.getUsers);
+router.get("/", userMiddleware.authenticateToken, userController.getUsers);
 
-    router.post("/login", (req, res, next) => {
-        next();
-    }, userController.loginUser);
+router.post("/login", (req, res, next) => {
+    next();
+}, userController.loginUser);
 
-    module.exports = router;
+module.exports = router;
